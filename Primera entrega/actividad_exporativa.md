@@ -1,419 +1,214 @@
+# Actividad de exploración
 
-# Actividad de Exploración
+Plataforma de eventos y conferencias  
+Modelo entidad-relación (notación Chen)
 
-# Proyecto: Plataforma de Gestión de Eventos y Conferencias
-
----
-
-# Introducción
-
-La organización de eventos y conferencias ha evolucionado gracias al uso de herramientas tecnológicas que permiten planificar, administrar y controlar todas las actividades de manera más eficiente. Una plataforma de gestión de eventos facilita tareas como el registro de asistentes, la programación de actividades, la venta de entradas y la comunicación entre organizadores y participantes.
-
-Actualmente, estas plataformas son utilizadas por empresas, universidades, organizaciones y entidades gubernamentales para realizar eventos presenciales, virtuales e híbridos, mejorando la experiencia de todos los involucrados.
+Este archivo describe el diagrama ER de la primera entrega.
 
 ---
 
-# 1. Conceptos importantes y relevantes en la temática
+## 1. Exploración del problema
 
-## ¿Qué es una Plataforma de Gestión de Eventos y Conferencias?
+Se modeló una plataforma para administrar eventos (congresos, conferencias y talleres).
 
-Una plataforma de gestión de eventos es un sistema informático diseñado para planificar, organizar, administrar y controlar eventos de cualquier tamaño, como congresos, seminarios, conferencias, ferias, capacitaciones y reuniones empresariales.
+Hechos que se sacaron del problema y que se ven en el dibujo:
 
-Su objetivo principal es centralizar toda la información del evento en un solo lugar para facilitar el trabajo de los organizadores y brindar una mejor experiencia a los asistentes.
-
----
-
-## Conceptos importantes
-
-### Gestión de eventos
-
-Es el proceso de planificar, organizar, ejecutar y evaluar un evento para cumplir los objetivos establecidos.
-
-### Registro de asistentes
-
-Permite que las personas se inscriban al evento mediante formularios digitales y almacena toda la información de los participantes.
-
-### Venta de entradas
-
-Algunas plataformas permiten vender boletos en línea y controlar los pagos de manera automática.
-
-### Agenda o cronograma
-
-Organiza todas las actividades del evento, indicando horarios, conferencias, talleres y ponencias.
-
-### Gestión de ponentes
-
-Permite administrar la información de los conferencistas, sus horarios, biografías y presentaciones.
-
-### Control de acceso
-
-Utiliza códigos QR, credenciales digitales o aplicaciones móviles para registrar la entrada de los asistentes de forma rápida y segura.
-
-### Eventos virtuales
-
-Son eventos realizados completamente en línea mediante plataformas de videoconferencia y transmisión en vivo.
-
-### Eventos híbridos
-
-Combinan asistentes presenciales y asistentes virtuales, permitiendo una mayor participación.
-
-### Reportes y estadísticas
-
-Las plataformas generan información sobre la cantidad de asistentes, ventas, participación y resultados del evento para apoyar la toma de decisiones.
+- El **Usuario** se registra. Tiene un rol (organizador, ponente o asistente).
+- El usuario **Pertenece_a** una **Organizacion**.
+- El usuario **Crea** eventos y la organización **publica** eventos.
+- El **Evento** puede ser presencial, virtual o híbrido.
+- El evento **realiza** en un **Lugar**. El lugar **Contiene** **Sala**.
+- El evento se **Clasifica** en **Categoria**.
+- El evento **Programa** **Sesion**. La sesión **ocurre_en** una sala.
+- El **Ponente** **es** un usuario e **Imparte** sesiones.
+- El evento **Ofrece** **Tipo_entrada**.
+- El usuario **Realiza** una **Inscripcion**. Esa inscripción **corresponde_a** un evento y **elige** un tipo de entrada.
+- La inscripción **genera** un **Pago** si la entrada no es gratis.
 
 ---
 
-## Beneficios de utilizar una plataforma de gestión de eventos
+## 2. Notación del diagrama
 
-- Reduce el tiempo de organización.
-- Automatiza tareas repetitivas.
-- Disminuye errores administrativos.
-- Facilita la comunicación entre organizadores y asistentes.
-- Mejora la experiencia de los participantes.
-- Permite realizar eventos presenciales, virtuales e híbridos.
-- Genera reportes útiles para mejorar futuros eventos.
+| Símbolo | Significado |
+|---|---|
+| Rectángulo | Entidad |
+| Óvalo | Atributo simple |
+| Óvalo padre con hijos | Atributo compuesto |
+| Óvalo de doble línea | Atributo multivaluado |
+| Nombre subrayado | Identificador principal |
+| Rombo | Relación |
+| 1, N, M | Cardinalidad en cada extremo |
 
----
-
-# 2. Tendencias actuales en las plataformas de gestión de eventos
-
-La tecnología ha cambiado la forma en que se organizan los eventos. Actualmente existen diversas tendencias que mejoran la eficiencia y la experiencia de los usuarios.
-
-## Eventos híbridos
-
-Cada vez es más común combinar asistentes presenciales con participantes conectados por internet. Esto permite ampliar el alcance del evento y reducir costos de desplazamiento.
+Las claves foráneas no se dibujan. En Chen las indica la relación.
 
 ---
 
-## Inteligencia Artificial (IA)
+## 3. Entidades e identificadores
 
-Muchas plataformas incorporan herramientas de IA para:
+Hay 11 entidades. El identificador de cada una está subrayado.
 
-- Responder preguntas mediante chatbots.
-- Recomendar conferencias según los intereses del usuario.
-- Automatizar registros.
-- Analizar datos del evento.
+| Entidad | Identificador | Qué es |
+|---|---|---|
+| Usuario | id_usuario | Persona registrada |
+| Organizacion | id_organizacion | Grupo o empresa que publica el evento |
+| Evento | id_evento | Congreso, conferencia o taller |
+| Categoria | id_categoria | Tema del evento |
+| Lugar | id_lugar | Sede física |
+| Sala | id_sala | Auditorio o salón |
+| Sesion | id_sesion | Charla o taller de la agenda |
+| Ponente | id_ponente | Quien imparte la sesión |
+| Tipo_entrada | id_tipo_entrada | Tarifa (general, estudiante, gratis…) |
+| Inscripcion | id_inscripcion | Registro de un usuario a un evento |
+| Pago | id_pago | Cobro de la inscripción |
 
----
+Distribución en el dibujo:
 
-## Aplicaciones móviles
-
-Las aplicaciones permiten a los asistentes:
-
-- Consultar el programa.
-- Recibir notificaciones.
-- Descargar certificados.
-- Ver mapas del lugar.
-- Comunicarse con otros participantes.
-
----
-
-## Networking inteligente
-
-Las plataformas ayudan a conectar asistentes con intereses similares para facilitar oportunidades de negocio y colaboración.
-
----
-
-## Analítica de datos
-
-Las organizaciones utilizan reportes para conocer:
-
-- Número de asistentes.
-- Tiempo de permanencia.
-- Conferencias con mayor participación.
-- Nivel de satisfacción.
-- Resultados de encuestas.
-
-Estos datos permiten mejorar la planificación de futuros eventos.
+- Izquierda: Usuario
+- Arriba: Organizacion
+- Centro: Evento
+- Arriba derecha: Categoria, Lugar, Sala
+- Derecha: Sesion
+- Abajo: Ponente
+- Abajo centro: Tipo_entrada, Inscripcion, Pago
 
 ---
 
-## Registro sin contacto
+## 4. Atributos de cada entidad
 
-Después de la pandemia se volvió muy común utilizar:
+### Usuario
+- id_usuario (identificador)
+- nombre_completo (compuesto) → nombre, apellido
+- email
+- contraseña
+- telefono (multivaluado)
+- rol
 
-- Códigos QR.
-- Credenciales digitales.
-- Check-in desde aplicaciones móviles.
+### Organizacion
+- id_organizacion (identificador)
+- nombre
+- email
+- telefono
 
-Esto hace el ingreso más rápido y seguro.
+### Evento
+- id_evento (identificador)
+- titulo
+- descripcion
+- modalidad
+- cupo
+- periodo (compuesto) → fecha_inicio, fecha_fin
 
----
+### Categoria
+- id_categoria (identificador)
+- nombre
 
-## Integración con otras herramientas
+### Lugar
+- id_lugar (identificador)
+- nombre
+- direccion (compuesto) → calle, ciudad, pais
 
-Las plataformas actuales pueden conectarse con:
+### Sala
+- id_sala (identificador)
+- nombre
+- capacidad
 
-- Google Calendar.
-- Outlook.
-- Zoom.
-- Microsoft Teams.
-- Sistemas de pago.
-- Redes sociales.
+### Sesion
+- id_sesion (identificador)
+- titulo
+- tipo
+- fecha_hora_inicio
+- fecha_hora_fin
 
-Esto facilita la organización completa del evento.
+### Ponente
+- id_ponente (identificador)
+- especialidad (multivaluado)
+- idioma (multivaluado)
 
----
+### Tipo_entrada
+- id_tipo_entrada (identificador)
+- nombre
+- precio
 
-# 3. Consulta y análisis de al menos dos herramientas existentes en el mercado
+### Inscripcion
+- id_inscripcion (identificador)
+- fecha
+- estado
 
-## Herramienta 1: Eventbrite
-
-### Descripción
-
-Eventbrite es una de las plataformas más conocidas para organizar eventos. Permite crear eventos, vender entradas y administrar asistentes de forma sencilla.
-
-### Características
-
-- Registro de asistentes.
-- Venta de entradas.
-- Control de pagos.
-- Promoción del evento.
-- Gestión de invitaciones.
-- Estadísticas básicas.
-- Escaneo de códigos QR.
-
-### Ventajas
-
-- Fácil de utilizar.
-- Interfaz intuitiva.
-- Disponible en muchos países.
-- Ideal para eventos pequeños y medianos.
-- Buena integración con redes sociales.
-
-### Desventajas
-
-- Algunas funciones son de pago.
-- Cobra comisiones por algunas ventas de entradas.
-- Las funciones avanzadas son limitadas frente a plataformas empresariales.
-
----
-
-## Herramienta 2: Cvent
-
-### Descripción
-
-Cvent es una plataforma profesional utilizada por empresas, universidades y organizaciones para administrar eventos de gran tamaño.
-
-### Características
-
-- Gestión completa de eventos.
-- Registro personalizado.
-- Agenda interactiva.
-- Aplicación móvil.
-- Eventos presenciales, virtuales e híbridos.
-- Reportes avanzados.
-- Integración con sistemas empresariales.
-
-### Ventajas
-
-- Muy completa.
-- Alta seguridad.
-- Excelente para eventos grandes.
-- Gran capacidad de personalización.
-- Amplias herramientas de análisis.
-
-### Desventajas
-
-- Precio elevado.
-- Requiere capacitación para aprovechar todas sus funciones.
-- No es la mejor opción para eventos pequeños.
+### Pago
+- id_pago (identificador)
+- monto
+- metodo
+- estado
 
 ---
 
-# Comparación entre las herramientas
+## 5. Compuestos y multivaluados
 
-| Característica | Eventbrite | Cvent |
-|----------------|------------|--------|
-| Facilidad de uso | Muy alta | Media |
-| Registro de asistentes | Sí | Sí |
-| Venta de entradas | Sí | Sí |
-| Eventos virtuales | Sí | Sí |
-| Eventos híbridos | Sí | Sí |
-| Reportes | Básicos | Avanzados |
-| Aplicación móvil | Sí | Sí |
-| Ideal para | Eventos pequeños y medianos | Eventos grandes y corporativos |
-| Precio | Medio | Alto |
+**Compuestos**
 
----
+| Entidad | Padre | Hijos |
+|---|---|---|
+| Usuario | nombre_completo | nombre, apellido |
+| Lugar | direccion | calle, ciudad, pais |
+| Evento | periodo | fecha_inicio, fecha_fin |
 
-# Análisis
+**Multivaluados (óvalo de doble línea)**
 
-Las dos plataformas cumplen el objetivo de facilitar la organización de eventos, pero están dirigidas a diferentes tipos de usuarios.
+| Entidad | Atributo | Por qué |
+|---|---|---|
+| Usuario | telefono | puede tener más de un número |
+| Ponente | especialidad | puede manejar más de un tema |
+| Ponente | idioma | puede hablar más de un idioma |
 
-Eventbrite destaca por ser sencilla, rápida de configurar y adecuada para personas o pequeñas organizaciones que desean administrar eventos sin conocimientos técnicos avanzados.
-
-Por otro lado, Cvent ofrece una solución mucho más completa para empresas y organizaciones que realizan congresos o conferencias de gran tamaño y necesitan funciones avanzadas como análisis de datos, personalización e integración con otros sistemas.
-
-La elección dependerá del tamaño del evento, el presupuesto disponible y las necesidades específicas de los organizadores.
+Categoria no va como óvalo doble: se resolvió con la relación Clasifica.  
+Los ponentes de una sesión tampoco: se resolvió con Imparte.
 
 ---
 
-# Conclusiones
+## 6. Relaciones (nombre, tipo y cardinalidad)
 
-- Las plataformas de gestión de eventos permiten organizar conferencias, congresos y reuniones de manera eficiente.
-- Automatizan procesos como el registro de asistentes, el control de acceso y la programación de actividades.
-- Las tendencias actuales incluyen inteligencia artificial, eventos híbridos, aplicaciones móviles y análisis de datos.
-- Eventbrite es una excelente opción para eventos pequeños y medianos debido a su facilidad de uso.
-- Cvent es una plataforma más robusta orientada a organizaciones que necesitan administrar eventos de gran escala.
-- La implementación de estas plataformas mejora la experiencia de los asistentes y optimiza el trabajo de los organizadores.
+Cardinalidades tomadas de los números 1, N y M del diagrama.
+
+| Rombo | De | Card. | A | Card. | Tipo | Lectura |
+|---|---|---|---|---|---|---|
+| Pertenece_a | Usuario | N | Organizacion | 1 | 1:N | Varios usuarios pertenecen a una organización |
+| Crea | Usuario | 1 | Evento | N | 1:N | Un usuario crea varios eventos |
+| publica | Organizacion | 1 | Evento | N | 1:N | Una organización publica varios eventos |
+| realiza | Evento | 1 | Lugar | N | 1:N | Un evento se realiza en uno o varios lugares |
+| Contiene | Lugar | 1 | Sala | N | 1:N | Un lugar contiene varias salas |
+| Clasifica | Evento | M | Categoria | N | N:M | Un evento tiene varias categorías y una categoría agrupa varios eventos |
+| Programa | Evento | 1 | Sesion | N | 1:N | Un evento programa varias sesiones |
+| ocurre_en | Sesion | N | Sala | 1 | N:1 | Varias sesiones ocurren en una sala |
+| Ofrece | Evento | 1 | Tipo_entrada | N | 1:N | Un evento ofrece varios tipos de entrada |
+| Realiza | Usuario | 1 | Inscripcion | N | 1:N | Un usuario realiza varias inscripciones |
+| corresponde_a | Inscripcion | N | Evento | 1 | N:1 | Varias inscripciones corresponden a un evento |
+| elige | Inscripcion | N | Tipo_entrada | 1 | N:1 | Varias inscripciones eligen un tipo de entrada |
+| genera | Inscripcion | 1 | Pago | 1 | 1:1 | Una inscripción genera un pago |
+| es | Usuario | 1 | Ponente | 1 | 1:1 | Un usuario es un ponente |
+| Imparte | Ponente | N | Sesion | M | N:M | Varios ponentes imparten varias sesiones |
+
+Resumen de tipos de relación:
+
+- **1:1:** es, genera
+- **1:N:** Pertenece_a, Crea, publica, realiza, Contiene, Programa, ocurre_en, Ofrece, Realiza, corresponde_a, elige
+- **N:M:** Clasifica, Imparte
+
+Usuario — Evento (inscribirse) es N:M en el negocio. En el diagrama se representó con la entidad Inscripcion porque esa relación tiene fecha y estado.
 
 ---
 
-# Bibliografía
+## 7. Reglas que se ven en el modelo
 
-Cvent. (s.f.). *Cvent Event Management Platform*. https://www.cvent.com/
-
-Eventbrite. (s.f.). *Eventbrite*. https://www.eventbrite.com/
-
-MeetingsNet. (2025). *Event Technology Trends*. https://www.meetingsnet.com/
-
-PCMA. (2025). *Professional Convention Management Association*. https://www.pcma.org/
+- Si el evento es virtual, realiza y ocurre_en pueden no usarse.
+- Una Sesion pertenece a un solo Evento (Programa 1:N).
+- Si el precio del Tipo_entrada es 0, Pago puede no existir. genera es 1:1.
+- Un mismo Usuario puede organizar o asistir (atributo rol). Si además habla, se crea Ponente y se une con es.
+- Clasifica es N:M para no convertir la categoría en atributo doble de Evento.
+- Imparte es N:M para los paneles (varios ponentes en una sesión).
 
 ---
----
----
 
-# Welcome to StackEdit!
+## 8. Conclusión
 
-Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
+Con lo visto en clase (entidad, identificador, atributo simple, compuesto, multivaluado, relación y cardinalidad) el diagrama cubre el ciclo del evento: quién lo publica, dónde se hace, cómo se arma la agenda, quién habla y cómo se inscribe y paga.
 
-
-# Files
-
-StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
-
-## Create files and folders
-
-The file explorer is accessible using the button in left corner of the navigation bar. You can create a new file by clicking the **New file** button in the file explorer. You can also create folders by clicking the **New folder** button.
-
-## Switch to another file
-
-All your files and folders are presented as a tree in the file explorer. You can switch from one to another by clicking a file in the tree.
-
-## Rename a file
-
-You can rename the current file by clicking the file name in the navigation bar or by clicking the **Rename** button in the file explorer.
-
-## Delete a file
-
-You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
-
-## Export a file
-
-You can export the current file by clicking **Export to disk** in the menu. You can choose to export the file as plain Markdown, as HTML using a Handlebars template or as a PDF.
-
-
-# Synchronization
-
-Synchronization is one of the biggest features of StackEdit. It enables you to synchronize any file in your workspace with other files stored in your **Google Drive**, your **Dropbox** and your **GitHub** accounts. This allows you to keep writing on other devices, collaborate with people you share the file with, integrate easily into your workflow... The synchronization mechanism takes place every minute in the background, downloading, merging, and uploading file modifications.
-
-There are two types of synchronization and they can complement each other:
-
-- The workspace synchronization will sync all your files, folders and settings automatically. This will allow you to fetch your workspace on any other device.
-	> To start syncing your workspace, just sign in with Google in the menu.
-
-- The file synchronization will keep one file of the workspace synced with one or multiple files in **Google Drive**, **Dropbox** or **GitHub**.
-	> Before starting to sync files, you must link an account in the **Synchronize** sub-menu.
-
-## Open a file
-
-You can open a file from **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Open from**. Once opened in the workspace, any modification in the file will be automatically synced.
-
-## Save a file
-
-You can save any file of the workspace to **Google Drive**, **Dropbox** or **GitHub** by opening the **Synchronize** sub-menu and clicking **Save on**. Even if a file in the workspace is already synced, you can save it to another location. StackEdit can sync one file with multiple locations and accounts.
-
-## Synchronize a file
-
-Once your file is linked to a synchronized location, StackEdit will periodically synchronize it by downloading/uploading any modification. A merge will be performed if necessary and conflicts will be resolved.
-
-If you just have modified your file and you want to force syncing, click the **Synchronize now** button in the navigation bar.
-
-> **Note:** The **Synchronize now** button is disabled if you have no file to synchronize.
-
-## Manage file synchronization
-
-Since one file can be synced with multiple locations, you can list and manage synchronized locations by clicking **File synchronization** in the **Synchronize** sub-menu. This allows you to list and remove synchronized locations that are linked to your file.
-
-
-# Publication
-
-Publishing in StackEdit makes it simple for you to publish online your files. Once you're happy with a file, you can publish it to different hosting platforms like **Blogger**, **Dropbox**, **Gist**, **GitHub**, **Google Drive**, **WordPress** and **Zendesk**. With [Handlebars templates](http://handlebarsjs.com/), you have full control over what you export.
-
-> Before starting to publish, you must link an account in the **Publish** sub-menu.
-
-## Publish a File
-
-You can publish your file by opening the **Publish** sub-menu and by clicking **Publish to**. For some locations, you can choose between the following formats:
-
-- Markdown: publish the Markdown text on a website that can interpret it (**GitHub** for instance),
-- HTML: publish the file converted to HTML via a Handlebars template (on a blog for example).
-
-## Update a publication
-
-After publishing, StackEdit keeps your file linked to that publication which makes it easy for you to re-publish it. Once you have modified your file and you want to update your publication, click on the **Publish now** button in the navigation bar.
-
-> **Note:** The **Publish now** button is disabled if your file has not been published yet.
-
-## Manage file publication
-
-Since one file can be published to multiple locations, you can list and manage publish locations by clicking **File publication** in the **Publish** sub-menu. This allows you to list and remove publication locations that are linked to your file.
-
-
-# Markdown extensions
-
-StackEdit extends the standard Markdown syntax by adding extra **Markdown extensions**, providing you with some nice features.
-
-> **ProTip:** You can disable any **Markdown extension** in the **File properties** dialog.
-
-
-## SmartyPants
-
-SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
-
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-
-
-## KaTeX
-
-You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
-
-The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
-
-$$
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
-
-> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
-
-
-## UML diagrams
-
-You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
-
-```mermaid
-sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
-```
-
-And this will produce a flow chart:
-
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
+No se modelaron certificado, materiales ni valoraciones. Se pueden agregar en otra entrega.

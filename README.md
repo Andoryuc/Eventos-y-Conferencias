@@ -10,14 +10,10 @@ Plataforma de eventos y conferencias
 
 ## Integrantes
 
-| Nombre completo | Rol en el grupo |
-| --- | --- |
-| *Nombre Apellido* | *Ej. modelado / documentación* |
-| *Nombre Apellido* | *Ej. exploración / README* |
-| *Nombre Apellido* | *Ej. diagrama ER* |
-| *Nombre Apellido* | *Ej. revisión* |
-
-> Reemplaza esta tabla con los nombres reales del grupo.
+| Nombre completo | Codigo estudiantil |
+|---|---|
+| Fredy Omar Avila Triana | 01251151005 |
+| Andres Felipe Castilla Caselles | 01251151011 |
 
 ---
 
